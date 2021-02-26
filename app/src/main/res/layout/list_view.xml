@@ -1,103 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:orientation="horizontal"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="16dp"
-        android:id="@+id/linearlayout"
-        android:orientation="horizontal">
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+       android:layout_weight="0.5"
+        android:layout_gravity="center_vertical"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="16sp"
+        android:paddingTop="15dp"
+
+        android:layout_marginLeft="10dp"
+        android:id="@+id/linearlayoutmag"
+         android:orientation="horizontal">
+
         <TextView
             android:id="@+id/mag"
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:text="Hiiiii"
-            android:paddingStart="20dp"
-            tools:ignore="RtlSymmetry" />
 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+           android:background="@drawable/circular_textview"
+            android:textSize="16sp"
+
+            android:text="Hiiiii"
+
+            tools:ignore="RtlSymmetry" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearlayout2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:paddingTop="15dp">
 
         <TextView
             android:id="@+id/placesecondary"
-            android:layout_width="0dp"
-            android:layout_weight="1.7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
+            android:maxLines="1"
+
+            android:textColor="@color/textColorEarthquakeDetails"
+            android:textSize="12sp"
+            android:text="Hiiiii"
+
             android:textAllCaps="true"
-
-
-            android:paddingLeft="10dp"
-            android:layout_height="wrap_content"
-            android:text="Hiiiii"
-            android:paddingStart="10dp"
             tools:ignore="RtlSymmetry" />
-
-
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_weight="1"
-            android:paddingLeft="20dp"
-            android:text="Hiiiii"
-            android:layout_marginRight="10dp"
-            android:textAlignment="textEnd"
-            android:paddingStart="20dp"
-            tools:ignore="RtlSymmetry"
-            android:layout_marginEnd="10dp" />
-
-
-    </LinearLayout>
-    <LinearLayout
-        app:layout_constraintTop_toBottomOf="@id/linearlayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:id="@+id/linearlayout2"
-        android:orientation="horizontal">
-        <TextView
-
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:paddingStart="20dp"
-            tools:ignore="RtlSymmetry" />
-
 
         <TextView
             android:id="@+id/placeprimary"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.7"
+            android:layout_width="match_parent"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/textColorEarthquakeLocation"
+            android:textSize="16sp"
+            android:layout_height="match_parent"
+            android:textStyle="bold"
 
-            android:gravity="left"
-            android:paddingLeft="10dp"
             android:text="Hiiiii"
-            android:paddingStart="10dp"
+
             tools:ignore="RtlSymmetry" />
+    </LinearLayout>
+
+
+    <LinearLayout
+      app:layout_constraintLeft_toRightOf="@id/linearlayout2"
+        android:layout_width="0dp"
+        android:paddingTop="15dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+       app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/linearlayout3"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:textColor="@color/textColorEarthquakeDetails"
+            android:textSize="12sp"
+
+            android:text="Hiiiii"
+            android:gravity="end"
+            android:textAlignment="textEnd"
+            android:layout_marginRight="12dp"
+            tools:ignore="RtlSymmetry"
+           />
 
         <TextView
             android:id="@+id/time"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_weight="1"
-            android:paddingLeft="20dp"
-            android:text="Hiiiii"
-            android:layout_marginRight="10dp"
             android:textAlignment="textEnd"
-            android:paddingStart="20dp"
-            tools:ignore="RtlSymmetry"
-            android:layout_marginEnd="10dp" />
+            android:textColor="@color/textColorEarthquakeDetails"
+            android:textSize="12sp"
+            android:layout_marginRight="12dp"
+            android:text="Hiiiii"
+
+            android:gravity="end" />
 
 
     </LinearLayout>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
