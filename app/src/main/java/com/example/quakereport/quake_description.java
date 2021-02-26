@@ -3,7 +3,7 @@ package com.example.quakereport;
 public class quake_description {
     private String mag="0";
     private String place="Default";
-    private String date="11-11-11";
+    private long time=0;
 
 
     public String getMag()
@@ -14,15 +14,15 @@ public class quake_description {
     {
         return place;
     }
-   public String getDate()
+   public long getTime()
     {
-        return date;
+        return time;
     }
-    public  quake_description(String mag,String place,String date)
+    public  quake_description(String mag,String place,long time)
     {
         this.mag=mag;
         this.place=place;
-        this.date=date;
+        this.time=time;
     }
 
 

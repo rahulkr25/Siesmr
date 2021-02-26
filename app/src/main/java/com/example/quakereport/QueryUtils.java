@@ -50,13 +50,11 @@ public final class QueryUtils {
                 JSONObject properties=features_object.getJSONObject("properties");
                 String mag= properties.optString("mag");
                 String place=properties.optString("place");
-                String time=properties.optString("time");
+               // String time=properties.optString("time");
                 long time_milisecond=properties.getLong("time");
-                Date dateObject = new Date(time_milisecond);
-                SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM DD, yyyy");
-                String dateToDisplay = dateFormatter.format(dateObject);
+               /*  */
 
-                earthquakes.add(new quake_description(mag,place,dateToDisplay));
+                earthquakes.add(new quake_description(mag,place,time_milisecond));
             }
             // TODO: Parse the response given by the SAMPLE_JSON_RESPONSE string and
             // build up a list of Earthquake objects with the corresponding data.
