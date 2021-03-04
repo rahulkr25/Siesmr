@@ -78,7 +78,7 @@ public class quake_adapter extends ArrayAdapter<quake_description> {
         quake_description current=getItem(position);
         long time=current.getTime();
         Date dateObject = new Date(time);
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM DD, yyyy");
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd,yyyy");
         String dateToDisplay = dateFormatter.format(dateObject);
         SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
         String timetodisplay=timeFormat.format(dateObject);
@@ -104,7 +104,7 @@ public class quake_adapter extends ArrayAdapter<quake_description> {
         String place=current.getPlace();
         String primary;
         String Secondary;
-        if(!place.contains("of"))
+        if(!place.contains("of")||!place.contains("km"))
         {
             primary=place;
              Secondary="Near of";
