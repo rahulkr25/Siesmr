@@ -38,20 +38,20 @@ public class MainActivity extends AppCompatActivity implements   android.app.Loa
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         boolean isConnected = activeNetwork != null &&
                 activeNetwork.isConnectedOrConnecting();
-         if(!isConnected)
-         {
-             ProgressBar progressBar=(ProgressBar)findViewById(R.id.loading_spinner);
-             progressBar.setVisibility(View.GONE);
+        if(!isConnected)
+        {
+            ProgressBar progressBar=(ProgressBar)findViewById(R.id.loading_spinner);
+            progressBar.setVisibility(View.GONE);
 
-             mEmptyStateTextView.setText("No Internet Connection..");
-         }
+            mEmptyStateTextView.setText("No Internet Connection..");
+        }
         else{
 
 
 
 
-        android.app.LoaderManager loaderManager=getLoaderManager();
-        loaderManager.initLoader(0,null,this).forceLoad();}
+            android.app.LoaderManager loaderManager=getLoaderManager();
+            loaderManager.initLoader(0,null,this).forceLoad();}
 
 
     }
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements   android.app.Loa
 
     @Override
     public Loader<ArrayList<quake_description>> onCreateLoader(int id, Bundle args) {
-         return new EarthquakeLoader(this,USGS_REQUEST_URL);
+        return new EarthquakeLoader(this,USGS_REQUEST_URL);
     }
 
     @Override
@@ -101,10 +101,10 @@ public class MainActivity extends AppCompatActivity implements   android.app.Loa
 
     @Override
     public void onLoaderReset(Loader<ArrayList<quake_description>> loader) {
-       update(null);
+        update(null);
     }
 
 
 
 
- }
+}
