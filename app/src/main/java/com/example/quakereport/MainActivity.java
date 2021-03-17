@@ -3,28 +3,30 @@ package com.example.quakereport;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements   android.app.LoaderManager.LoaderCallbacks<ArrayList<quake_description>> {
-
+    SwipeRefreshLayout swipeRefreshLayout;
     private TextView mEmptyStateTextView;
     public static final String USGS_REQUEST_URL =
-            "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=40";
+            "https://earthquake.usgs.gov/fdsnws/event/1/query";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +56,38 @@ public class MainActivity extends AppCompatActivity implements   android.app.Loa
             loaderManager.initLoader(0,null,this).forceLoad();}
 
 
+/*
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
+                //your code on swipe refresh
+                //we are checking networking connectivity
+
+
+
+            }
+        });
+*/
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
     void update(ArrayList<quake_description>earthquakes)
     {
@@ -85,7 +119,27 @@ public class MainActivity extends AppCompatActivity implements   android.app.Loa
 
     @Override
     public Loader<ArrayList<quake_description>> onCreateLoader(int id, Bundle args) {
-        return new EarthquakeLoader(this,USGS_REQUEST_URL);
+        //SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String minMagnitude = sharedPrefs.getString(
+                getString(R.string.settings_min_magnitude_key),
+                getString(R.string.settings_min_magnitude_default));
+
+        String orderBy = sharedPrefs.getString(
+                getString(R.string.settings_order_by_key),
+                getString(R.string.settings_order_by_default)
+        );
+
+        Uri baseUri = Uri.parse(USGS_REQUEST_URL);
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        uriBuilder.appendQueryParameter("format", "geojson");
+        uriBuilder.appendQueryParameter("limit", "10");
+        uriBuilder.appendQueryParameter("minmag", minMagnitude);
+        uriBuilder.appendQueryParameter("orderby", orderBy);
+
+        return new EarthquakeLoader(this, uriBuilder.toString());
+        //return new EarthquakeLoader(this,USGS_REQUEST_URL);
     }
 
     @Override
@@ -103,7 +157,6 @@ public class MainActivity extends AppCompatActivity implements   android.app.Loa
     public void onLoaderReset(Loader<ArrayList<quake_description>> loader) {
         update(null);
     }
-
 
 
 
