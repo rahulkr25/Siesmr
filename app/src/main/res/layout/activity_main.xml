@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-<ListView
-    android:id="@+id/list"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:divider="@null"
-    android:dividerHeight="0dp"
-    android:layout_height="match_parent"/>
+    <ListView
+        android:id="@+id/list"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:layout_height="match_parent"/>
 
     <ProgressBar
         android:id="@+id/loading_spinner"

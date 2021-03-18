@@ -23,7 +23,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements   android.app.LoaderManager.LoaderCallbacks<ArrayList<quake_description>> {
-    SwipeRefreshLayout swipeRefreshLayout;
+     private int loadercounter=0;
     private TextView mEmptyStateTextView;
     public static final String USGS_REQUEST_URL =
             "https://earthquake.usgs.gov/fdsnws/event/1/query";
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements   android.app.Loa
 
 
             android.app.LoaderManager loaderManager=getLoaderManager();
-            loaderManager.initLoader(0,null,this).forceLoad();}
+            loaderManager.initLoader(loadercounter,null,this).forceLoad();}
 
 
 /*
@@ -63,15 +63,19 @@ public class MainActivity extends AppCompatActivity implements   android.app.Loa
                 swipeRefreshLayout.setRefreshing(false);
                 //your code on swipe refresh
                 //we are checking networking connectivity
-
-
-
             }
         });
 */
     }
-
-
+    //////////////////For Refreshing Work we can load the loader
+/*
+    @Override
+    protected void onResume() {
+        super.onResume();
+        android.app.LoaderManager loaderManager=getLoaderManager();
+        loaderManager.initLoader(loadercounter++,null,this).forceLoad();
+    }
+*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

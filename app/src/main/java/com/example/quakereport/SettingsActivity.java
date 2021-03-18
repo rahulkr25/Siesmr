@@ -7,9 +7,12 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -17,16 +20,22 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
+
+
     }
 
     /*@Override
     protected void onStop() {
         super.onStop();
+
         Intent settingsIntent = new Intent(this, MainActivity.class);
         startActivity(settingsIntent);
         //startActivity(MainActivity);
     }
      */
+
+
+
     public static class EarthquakePreferenceFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
 
         @Override
@@ -48,6 +57,7 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
             String stringValue = value.toString();
+
             if (preference instanceof ListPreference) {
                 ListPreference listPreference = (ListPreference) preference;
                 int prefIndex = listPreference.findIndexOfValue(stringValue);
@@ -56,9 +66,13 @@ public class SettingsActivity extends AppCompatActivity {
                     preference.setSummary(labels[prefIndex]);
                 }
             } else {
-                preference.setSummary(stringValue);
-            }
+
+                    preference.setSummary(stringValue);
+             }
             return true;
         }
+
+
     }
+
 }
